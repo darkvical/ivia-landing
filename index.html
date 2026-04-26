@@ -193,10 +193,56 @@
       to { transform: scale(5); opacity: 0; }
     }
 
-    /* ── Responsive ─────────────────────────────────────────── */
-    @media (max-width: 400px) {
-      .main-title { font-size: 30px; letter-spacing: 9px; }
-      .page       { padding: 34px 14px 110px; gap: 20px; }
+    /* ── Responsive: sin scroll en móvil ───────────────────── */
+    @media (max-width: 768px) {
+      body {
+        height: 100dvh;
+        overflow: hidden;
+      }
+      .page {
+        height: 100dvh;
+        min-height: unset;
+        padding: 6px 16px 80px;
+        gap: 7px;
+        justify-content: center;
+      }
+      .logo-section {
+        margin: -22px 0 -16px;
+      }
+      .logo-img {
+        max-width: 270px;
+      }
+      .grid {
+        gap: 7px;
+      }
+      .grid .btn {
+        padding: 13px 16px;
+      }
+      .appointment {
+        padding: 13px 18px;
+      }
+      .btn-label {
+        font-size: 11.5px;
+        letter-spacing: 2px;
+      }
+      .btn-icon  { font-size: 15px; }
+      .btn-arrow { font-size: 14px; }
+      .appt-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+      .appt-sub {
+        font-size: 6.5px;
+        letter-spacing: 2px;
+        margin-top: 3px;
+      }
+      .bottom-nav {
+        bottom: 14px;
+        padding: 8px 22px;
+        gap: 20px;
+      }
+      .nav-icon  { font-size: 15px; }
+      .nav-label { font-size: 6px; }
     }
   </style>
 </head>
