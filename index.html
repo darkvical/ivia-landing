@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IVIA Studio | Beauty Lounge</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --coral:  #e69082;
+      --beige:  #f2e1d4;
+      --black:  #000000;
+      --copper: #c4a77d;
+      --bg:     #0a0805;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    /* ── Dot grid (right edge) ──────────────────────────────── */
+    .dots-rail {
+      position: fixed;
+      right: 14px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.13);
+    }
+
+    /* ── Page wrapper ───────────────────────────────────────── */
+    .page {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      padding: 20px 22px 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+    }
+
+    /* ── Logo principal ─────────────────────────────────────── */
+    .logo-section {
+      text-align: center;
+      width: 100%;
+      margin: -30px 0 -20px;
+    }
+    .logo-img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* ── Button base ────────────────────────────────────────── */
+    .btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      overflow: hidden;
+      border: none;
+      transition: transform 0.28s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow 0.28s ease;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background 0.25s ease;
+    }
+    .btn:hover::after   { background: rgba(255,255,255,0.09); }
+    .btn:hover          { transform: translateY(-4px) scale(1.025); box-shadow: 0 14px 34px rgba(0,0,0,0.45); }
+    .btn:active         { transform: translateY(0) scale(0.97); transition-duration: 0.1s; }
+
+    .btn-icon  { font-size: 17px; color: rgba(0,0,0,0.65); width: 22px; text-align: center; flex-shrink: 0; position: relative; z-index: 1; }
+    .btn-label { font-size: 13.5px; font-weight: 700; letter-spacing: 3px; color: rgba(0,0,0,0.75); text-transform: uppercase; flex: 1; position: relative; z-index: 1; }
+    .btn-arrow { font-size: 16px; color: rgba(0,0,0,0.65); transition: transform 0.25s ease; position: relative; z-index: 1; }
+    .btn:hover .btn-arrow { transform: translate(3px,-3px); }
+
+    /* ── Social grid ────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+    .grid .btn         { padding: 22px 18px; }
+    .btn-whatsapp      { background: var(--copper); }
+    .btn-instagram     { background: var(--coral); }
+    .btn-facebook      { background: var(--coral); }
+    .btn-tiktok        { background: var(--coral); }
+
+    /* ── Appointment ────────────────────────────────────────── */
+    .appointment {
+      width: 100%;
+      padding: 24px 22px;
+      background: var(--beige);
+    }
+    .appt-text        { flex: 1; position: relative; z-index: 1; }
+    .appt-title       { font-size: 14.5px; font-weight: 700; letter-spacing: 3px; color: rgba(0,0,0,0.78); text-transform: uppercase; display: block; }
+    .appt-sub         { font-size: 7.5px; font-weight: 400; letter-spacing: 3px; color: rgba(0,0,0,0.38); text-transform: uppercase; display: block; margin-top: 5px; }
+    .appointment:hover { box-shadow: 0 18px 44px rgba(242,225,212,0.22); }
+
+    /* ── Tagline ────────────────────────────────────────────── */
+    .tagline {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 2px;
+    }
+    .tagline span {
+      font-size: 7.5px;
+      font-weight: 300;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.14);
+      text-transform: uppercase;
+    }
+
+    /* ── Bottom nav ─────────────────────────────────────────── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22,20,16,0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 50px;
+      padding: 10px 28px;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+      z-index: 200;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      opacity: 0.35;
+      transition: opacity 0.25s ease;
+      padding: 4px 10px;
+      border-radius: 30px;
+      text-decoration: none;
+    }
+    .nav-item.active { opacity: 1; }
+    .nav-item:hover  { opacity: 0.85; }
+    .nav-icon  { font-size: 17px; color: #fff; }
+    .nav-label { font-size: 7px; font-weight: 500; letter-spacing: 2px; color: rgba(255,255,255,0.55); text-transform: uppercase; }
+
+    /* ── Ripple ─────────────────────────────────────────────── */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      transform: scale(0);
+      animation: ripple-anim 0.55s linear;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes ripple-anim {
+      to { transform: scale(5); opacity: 0; }
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 400px) {
+      .main-title { font-size: 30px; letter-spacing: 9px; }
+      .page       { padding: 34px 14px 110px; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dot rail decoration -->
+  <div class="dots-rail" id="dotsRail"></div>
+
+  <main class="page">
+
+    <!-- Logo -->
+    <div class="logo-section">
+      <img class="logo-img" src="assets/logo.png" alt="IVIA Studio Beauty Lounge">
+    </div>
+
+    <!-- Social grid -->
+    <div class="grid">
+      <a class="btn btn-whatsapp" href="https://wa.me/message/GSKIYJBAVJV3H1" target="_blank">
+        <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
+        <span class="btn-label">WhatsApp</span>
+        <span class="btn-arrow"><i class="fa-solid fa-up-right-from-square"></i></span>
+      </a>
+      <a class="btn btn-instagram" href="https://www.instagram.com/ivia.studio/" target="_blank">
+        <span class="btn-icon"><i class="fa-brands fa-instagram"></i></span>
+        <span class="btn-label">Instagram</span>
+        <span class="btn-arrow"><i class="fa-solid fa-up-right-from-square"></i></span>
+      </a>
+      <a class="btn btn-facebook" href="https://www.facebook.com/ivia.studio" target="_blank">
+        <span class="btn-icon"><i class="fa-brands fa-facebook-f"></i></span>
+        <span class="btn-label">Facebook</span>
+        <span class="btn-arrow"><i class="fa-solid fa-up-right-from-square"></i></span>
+      </a>
+      <a class="btn btn-tiktok" href="https://www.tiktok.com/@ivia.studio" target="_blank">
+        <span class="btn-icon"><i class="fa-brands fa-tiktok"></i></span>
+        <span class="btn-label">TikTok</span>
+        <span class="btn-arrow"><i class="fa-solid fa-up-right-from-square"></i></span>
+      </a>
+    </div>
+
+    <!-- Book Appointment -->
+    <a class="btn appointment" href="https://www.fresha.com/p/ivia-beauty-lounge-6213278?share=true&pId=2810015" target="_blank">
+      <span class="btn-icon" style="font-size:20px; width:26px;"><i class="fa-regular fa-calendar"></i></span>
+      <div class="appt-text">
+        <span class="appt-title">Book Appointment</span>
+        <span class="appt-sub">Reservado para los distinguidos</span>
+      </div>
+      <span class="btn-arrow" style="font-size:17px;"><i class="fa-solid fa-up-right-from-square"></i></span>
+    </a>
+
+
+  </main>
+
+  <!-- Bottom navigation -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-nav="home">
+      <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+      <span class="nav-label">Home</span>
+    </div>
+    <a class="nav-item" data-nav="book" href="https://www.fresha.com/p/ivia-beauty-lounge-6213278?share=true&pId=2810015" target="_blank">
+      <span class="nav-icon"><i class="fa-regular fa-calendar"></i></span>
+      <span class="nav-label">Book</span>
+    </a>
+    <div class="nav-item" data-nav="info">
+      <span class="nav-icon"><i class="fa-solid fa-circle-info"></i></span>
+      <span class="nav-label">Info</span>
+    </div>
+  </nav>
+
+  <script>
+    // Generate dots rail
+    const rail = document.getElementById('dotsRail');
+    for (let i = 0; i < 22; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot';
+      rail.appendChild(d);
+    }
+
+    // Ripple on every button
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const r = document.createElement('span');
+        r.className = 'ripple';
+        r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`;
+        this.appendChild(r);
+        r.addEventListener('animationend', () => r.remove());
+      });
+    });
+
+    // Bottom nav switching
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', function () {
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
