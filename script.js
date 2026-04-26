@@ -19,10 +19,20 @@ document.querySelectorAll('.btn').forEach(btn => {
   });
 });
 
-// Bottom nav switching
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', function () {
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    this.classList.add('active');
+// Cargar bottom nav desde componente reutilizable
+fetch('components/bottom-nav.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('bottom-nav-placeholder').outerHTML = html;
+
+    // Activar nav switching una vez insertado el componente
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', function () {
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Notificar a la página que el nav ya está listo
+    document.dispatchEvent(new Event('navLoaded'));
   });
-});
