@@ -1,9 +1,9 @@
 :root {
-  --coral:  #e69082;
-  --beige:  #f2e1d4;
-  --black:  #000000;
-  --copper: #c4a77d;
-  --bg:     #0a0805;
+  --coral:      #e69082;
+  --beige:      #f2e1d4;
+  --copper:     #c4a77d;
+  --bg:         #0a0805;
+  --font-serif: 'Bodoni Moda', serif;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +12,7 @@ body {
   background: var(--bg);
   height: 100dvh;
   overflow: hidden;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-serif);
   display: flex;
   justify-content: center;
 }

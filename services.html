@@ -3,78 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servicios de IVIA Studio Beauty Lounge — Manos, pies, pestañas, cejas y depilación.">
   <title>Servicios | IVIA Studio</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="services.css">
 </head>
-<body>
+<body data-active-nav="info">
 
   <main class="page services-page">
 
-    <!-- Header -->
+    <img class="services-logo" src="assets/logo.png" alt="IVIA Studio Beauty Lounge">
+
     <header class="services-header">
-      <a href="index.html" class="back-btn">
-        <i class="fa-solid fa-chevron-left"></i>
-      </a>
       <div class="services-title-block">
         <h1 class="services-title">Servicios</h1>
-        <span class="services-sub">Beauty Lounge</span>
       </div>
-      <div class="back-placeholder"></div>
     </header>
 
-    <!-- Lista de servicios -->
     <div class="services-list" id="servicesList">
 
-      <div class="service-category">
-        <span class="category-label">Categoría</span>
-        <div class="service-item">
-          <div class="service-info">
-            <span class="service-name">Nombre del servicio</span>
-            <span class="service-desc">Descripción breve del servicio</span>
-          </div>
-          <span class="service-price">$00</span>
+      <a class="service-item" href="manos.html">
+        <div class="service-info">
+          <span class="service-name">Manos</span>
+          <span class="service-desc">Manicure, esmaltado semipermanente y tratamientos para el cuidado e hidratación de manos.</span>
         </div>
-        <div class="service-item">
-          <div class="service-info">
-            <span class="service-name">Nombre del servicio</span>
-            <span class="service-desc">Descripción breve del servicio</span>
-          </div>
-          <span class="service-price">$00</span>
-        </div>
-      </div>
+        <span class="service-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
 
-      <div class="service-category">
-        <span class="category-label">Categoría</span>
-        <div class="service-item">
-          <div class="service-info">
-            <span class="service-name">Nombre del servicio</span>
-            <span class="service-desc">Descripción breve del servicio</span>
-          </div>
-          <span class="service-price">$00</span>
+      <a class="service-item" href="pies.html">
+        <div class="service-info">
+          <span class="service-name">Pies</span>
+          <span class="service-desc">Pedicure spa, esmaltado semipermanente y exfoliación profunda para pies suaves y revitalizados.</span>
         </div>
-      </div>
+        <span class="service-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a class="service-item" href="#">
+        <div class="service-info">
+          <span class="service-name">Pestañas y Cejas</span>
+          <span class="service-desc">Lifting, tinte, laminado y diseño de cejas para realzar tu mirada de forma natural y duradera.</span>
+        </div>
+        <span class="service-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a class="service-item" href="#">
+        <div class="service-info">
+          <span class="service-name">Depilación</span>
+          <span class="service-desc">Depilación con cera y hilo para un acabado suave y preciso en rostro y cuerpo.</span>
+        </div>
+        <span class="service-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
 
     </div>
 
   </main>
 
-  <!-- Bottom navigation (componente reutilizable) -->
   <div id="bottom-nav-placeholder"></div>
 
   <script src="script.js"></script>
-  <script>
-    // Marcar "info" como activo al cargar
-    document.addEventListener('navLoaded', () => {
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      document.querySelector('[data-nav="info"]')?.classList.add('active');
-    });
-  </script>
 
 </body>
 </html>
