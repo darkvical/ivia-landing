@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago | IVIA Studio</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coral:      #e69082;
+      --beige:      #f2e1d4;
+      --copper:     #c4a77d;
+      --bg:         #0a0805;
+      --font-serif: 'Bodoni Moda', serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      font-family: var(--font-serif);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 40px 24px;
+    }
+
+    /* ── Tarjeta ────────────────────────────────────────────── */
+    .qr-card {
+      background: #131008;
+      border: 1px solid rgba(196,167,125,0.25);
+      border-radius: 28px;
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    /* ── Logo ───────────────────────────────────────────────── */
+    .card-logo {
+      width: 240px;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Divisor ────────────────────────────────────────────── */
+    .card-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--copper), transparent);
+      opacity: 0.4;
+    }
+
+    /* ── QR de pago ─────────────────────────────────────────── */
+    .qr-wrapper {
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 16px;
+      background: var(--beige);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .qr-img {
+      display: block;
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    /* ── Textos ─────────────────────────────────────────────── */
+    .card-text {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-cta {
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--beige);
+      text-transform: uppercase;
+    }
+
+    .card-sub {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: var(--copper);
+      opacity: 0.75;
+      text-transform: uppercase;
+    }
+
+    /* ── Impresión ──────────────────────────────────────────── */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        justify-content: flex-start;
+      }
+      .qr-card {
+        background: #fff;
+        border: none;
+        box-shadow: none;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .card-logo  { filter: invert(1) brightness(0.25); }
+      .card-divider { opacity: 0.2; }
+      .qr-wrapper { background: #fff; box-shadow: none; padding: 0; }
+      .card-cta   { color: #1a1410; }
+      .card-sub   { color: #888; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="qr-card">
+
+    <img class="card-logo" src="assets/logo.png" alt="IVIA Studio Beauty Lounge">
+
+    <div class="card-divider"></div>
+
+    <div class="qr-wrapper">
+      <img class="qr-img" src="assets/qr_payment.png" alt="QR de pago IVIA Studio">
+    </div>
+
+    <div class="card-text">
+      <span class="card-cta">Paga con QR</span>
+      <span class="card-sub">Escanea con tu app bancaria</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
