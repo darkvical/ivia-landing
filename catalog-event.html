@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar del Evento – Día de la Madre | IVIA Studio</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --coral:  #e69082;
+      --beige:  #f2e1d4;
+      --copper: #c4a77d;
+      --bg:     #0a0805;
+      --serif:  'Bodoni Moda', serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: var(--serif);
+    }
+
+    .layout {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+    }
+
+    /* ── Banner (3/4) ── */
+    .banner-side {
+      flex: 3;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-side img {
+      width: 100%;
+      height: 100vh;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    /* ── QR side (1/4) ── */
+    .qr-side {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 2vw, 28px);
+      border-left: 1px solid rgba(196,167,125,0.15);
+    }
+
+    .qr-card {
+      padding-top: 35px !important;
+      background: #131008;
+      border: 1px solid rgba(196,167,125,0.25);
+      border-radius: clamp(14px, 2vw, 24px);
+      padding: clamp(16px, 3vh, 40px) clamp(16px, 2.5vw, 36px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(10px, 2vh, 24px);
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .card-logo {
+      width: clamp(80px, 14vw, 160px);
+      height: auto;
+      display: block;
+    }
+
+    .card-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--copper), transparent);
+      opacity: 0.4;
+    }
+
+    .qr-wrapper {
+      border-radius: clamp(8px, 1.5vw, 14px);
+      overflow: hidden;
+      padding: clamp(8px, 1.5vw, 14px);
+      background: var(--beige);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    #qrcode canvas,
+    #qrcode img {
+      display: block;
+      width: clamp(120px, 18vw, 220px) !important;
+      height: clamp(120px, 18vw, 220px) !important;
+      border-radius: 4px;
+    }
+
+    .card-text {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .card-cta {
+      font-size: clamp(10px, 1.5vw, 15px);
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--beige);
+      text-transform: uppercase;
+    }
+
+    .card-url {
+      font-size: clamp(8px, 1vw, 11px);
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      color: var(--copper);
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- Banner 3/4 -->
+    <div class="banner-side">
+      <img src="assets/banner.jpeg" alt="Bar del Evento – Día de la Madre | IVIA Studio Beauty Lounge">
+    </div>
+
+    <!-- QR 1/4 -->
+    <div class="qr-side">
+      <div class="qr-card">
+        <!-- <img class="card-logo" src="assets/logo.png" alt="IVIA Studio Beauty Lounge"> -->
+        <!-- <div class="card-divider"></div> -->
+        <div class="qr-wrapper">
+          <div id="qrcode"></div>
+        </div>
+        <div class="card-text">
+          <span class="card-cta">Escanéame</span>
+          <span class="card-url" id="urlDisplay"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const LANDING_URL = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
+      ? 'https://iviastudio.pe'
+      : window.location.origin;
+
+    document.getElementById('urlDisplay').textContent = LANDING_URL;
+
+    new QRCode(document.getElementById('qrcode'), {
+      text: LANDING_URL,
+      width: 320,
+      height: 320,
+      colorDark: '#1a1208',
+      colorLight: '#f2e1d4',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+
+</body>
+</html>
