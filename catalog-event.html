@@ -126,6 +126,51 @@
       color: var(--copper);
       opacity: 0.7;
     }
+
+    /* ── Responsive: portrait / mobile ── */
+    @media (max-aspect-ratio: 1/1), (max-width: 640px) {
+      html, body { overflow: auto; }
+
+      .layout {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .banner-side {
+        flex: none;
+        width: 100%;
+      }
+
+      .banner-side img {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        object-fit: contain;
+      }
+
+      .qr-side {
+        flex: none;
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(196,167,125,0.15);
+        padding: clamp(20px, 5vw, 40px) clamp(16px, 4vw, 32px);
+      }
+
+      .qr-card {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      #qrcode canvas,
+      #qrcode img {
+        width: clamp(140px, 40vw, 220px) !important;
+        height: clamp(140px, 40vw, 220px) !important;
+      }
+
+      .card-cta  { font-size: clamp(11px, 3.5vw, 16px); }
+      .card-url  { font-size: clamp(9px, 2.5vw, 12px); }
+    }
   </style>
 </head>
 <body>
